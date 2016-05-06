@@ -1,0 +1,62 @@
+{#
+This file is part of EC-CUBE
+#}
+
+<divs id="low_stock_area" xmlns="http://www.w3.org/1999/html" >
+    <p class="low_stock_content">
+        Low Stock: <span>{{LowStockAlert.id}}</span> <span class="text-primary" style="display: none;">残りあとわずか！</span>
+    </p>
+</divs>
+
+<script type="text/javascript">
+    // data low stock
+    var lowStock = {{ low_stocks|json_encode|raw }};
+    $(document).ready(function() {
+        // select class 1
+        $('select[name=classcategory_id1]').change(function() {
+            var $form = $(this).parents('form');
+            var product_id = $form.find('input[name=product_id]').val();
+            var $sele1 = $(this);
+            var $sele2 = $form.find('select[name=classcategory_id2]');
+
+            $('#low_stock_area .text-primary').hide();
+            if (!$sele2.length) {
+                checkLowStock($form, product_id, $sele1.val(), null);
+            }
+        });
+
+        // select class 2
+        $('select[name=classcategory_id2]').change(function() {
+            var $form = $(this).parents('form');
+            var product_id = $form.find('input[name=product_id]').val();
+            var $sele1 = $form.find('select[name=classcategory_id1]');
+            var $sele2 = $(this);
+            checkLowStock($form, product_class_id, $sele1.val(), $sele2.val());
+        });
+
+        // has class?
+        if ({{ Product.hasProductClass()|json_encode|raw }} == false) {
+            checkLowStock($('#form1'), $('#form1').find('input[name=product_id]').val(), null, null);
+        }
+
+        // check low stock
+        function checkLowStock(form, product_id, classcat_id1, classcat_id2) {
+            classcat_id2 = classcat_id2 ? classcat_id2 : '';
+            var classcat2;
+
+            if (eccube.hasOwnProperty('productsClassCategories')) {
+                classcat2 = eccube.productsClassCategories[product_id][classcat_id1]['#' + classcat_id2];
+            } else {
+                classcat_id1 = classcat_id1 ? classcat_id1 : '__unselected2';
+                classcat2 = eccube.classCategories[classcat_id1]['#' + classcat_id2];
+            }
+
+            $('#low_stock_area .text-primary').hide();
+            if (classcat2 && typeof classcat2.product_class_id !== 'undefined' && String(classcat2.product_class_id).length >= 1) {
+                if (lowStock[classcat2.product_class_id]) {
+                    $('#low_stock_area .text-primary').show();
+                }
+            }
+        }
+    });
+</script>

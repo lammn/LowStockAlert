@@ -1,0 +1,10 @@
+name: LowStockAlert
+code: LowStockAlert
+version: 1.0.0
+service:
+    - LowStockAlertServiceProvider
+orm.path:
+    - /Resource/doctrine
+migration.path:
+    - /Migration
+event: Event

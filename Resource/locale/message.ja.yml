@@ -1,0 +1,4 @@
+admin.product_low_stock_alert.save.complete: Save Successful!
+admin.product_low_stock_alert.save.error: Save Fail!
+front.product_low_stock_alert.show.warning: 残りあとわずか！
+

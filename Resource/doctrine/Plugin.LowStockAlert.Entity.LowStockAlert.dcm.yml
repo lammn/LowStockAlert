@@ -1,0 +1,14 @@
+Plugin\LowStockAlert\Entity\LowStockAlert:
+    type: entity
+    table: plg_low_stock_alert
+    repositoryClass: Plugin\LowStockAlert\Repository\LowStockAlertRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: stock_alert
+            generator:
+                strategy: NONE
+    lifecycleCallbacks: {  }

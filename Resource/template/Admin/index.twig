@@ -1,0 +1,55 @@
+
+{% extends 'default_frame.twig' %}
+
+{% set menus = ['product', 'product_low_stock_alert'] %}
+
+{% block title %}商品管理{% endblock %}
+{% block sub_title %}Low Stock Alert{% endblock %}
+
+{% form_theme form 'Form/bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block stylesheet %}
+
+{% endblock stylesheet %}
+
+{% block javascript %}
+<script src="{{ app.config.admin_urlpath }}/assets/js/vendor/moment.min.js"></script>
+<script src="{{ app.config.admin_urlpath }}/assets/js/vendor/moment-ja.js"></script>
+
+<script>
+
+function fnChangeActionSubmit(action) {
+    document.form.action = action;
+    document.form.submit();
+}
+</script>
+{% endblock javascript %}
+
+{% block main %}
+<div class="search-box">
+    <form name="form" id="form" method="post" action="" class="form-inline">
+        {{ form_widget(form._token) }}
+        <div class="row">
+            <div class="col-md-12 accordion">
+                <div class="form-group">
+                    <!-- {{ form_label(form.id) }} -->
+                    <label class="control-label">Low Stock Alert Number</label>
+                    {{ form_widget(form.id) }}
+                    {{ form_errors(form.id) }}
+                </div>
+            </div>
+            <!-- /.col -->
+
+        </div>
+        <div class="row btn_area">
+            <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 text-center">
+                <button class="btn btn-primary btn-block btn-lg" onclick="fnChangeActionSubmit('{{ url('admin_product_low_stock_alert') }}'); return false;">
+                    検索する <svg class="cb cb-angle-right"><use xlink:href="#cb-angle-right"></use></svg>
+                </button>
+            </div>
+            <!-- /.col -->
+        </div>
+    </form>
+</div>
+
+{% endblock %}
