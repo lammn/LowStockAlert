@@ -2,7 +2,7 @@
 namespace Plugin\LowStockAlert\Tests\Web;
 
 use Eccube\Tests\Web\Admin\AbstractAdminWebTestCase;
-// use Plugin\LowStockAlert\Entity\LowStockAlert;
+use Plugin\LowStockAlert\Entity\LowStockAlert;
 
 /**
 * Class test of controller
@@ -10,6 +10,19 @@ use Eccube\Tests\Web\Admin\AbstractAdminWebTestCase;
 */
 class LowStockAlertControllerTest extends AbstractAdminWebTestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        $faker = $this->getFaker();
+
+        $LowStockAlert = new LowStockAlert();
+        $LowStockAlert->setId($faker->randomNumber(1));
+
+        $this->app['orm.em']->persist($LowStockAlert);
+        $this->app['orm.em']->flush();
+    }
+
     /**
      * Create data
      *
@@ -42,7 +55,7 @@ class LowStockAlertControllerTest extends AbstractAdminWebTestCase
     public function testEditWithPost()
     {
         $formData = $this->createFormData();
-        $crawler = $this->client->request(
+        $this->client->request(
             'POST',
             $this->app->url('admin_product_low_stock_alert'),
             array('admin_product_low_stock_alert' => $formData)
