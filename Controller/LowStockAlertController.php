@@ -41,7 +41,7 @@ class LowStockAlertController extends AbstractController
             }
         }
 
-        return $app->render('LowStockAlert/Resource/template/admin/index.twig', array(
+        return $app->render('LowStockAlert/Resource/template/Admin/index.twig', array(
             'form' => $form->createView(),
             'LowStockAlert' => $LowStockAlert,
         ));
