@@ -31,7 +31,8 @@ class LowStockAlertControllerTest extends AbstractAdminWebTestCase
     {
         $faker = $this->getFaker();
         $form = array(
-            'id' => $faker->randomNumber(1)
+            'id' => $faker->randomNumber(1),
+            '_token' => 'dummy'
         );
         return $form;
     }
