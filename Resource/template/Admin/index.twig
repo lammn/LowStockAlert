@@ -33,7 +33,7 @@ function fnChangeActionSubmit(action) {
             <div class="col-md-12 accordion">
                 <div class="form-group">
                     <!-- {{ form_label(form.id) }} -->
-                    <label class="control-label">Low Stock Alert Number</label>
+                    <label class="control-label">表示を開始する残り在庫数</label>
                     {{ form_widget(form.id) }}
                     {{ form_errors(form.id) }}
                 </div>
@@ -44,7 +44,7 @@ function fnChangeActionSubmit(action) {
         <div class="row btn_area">
             <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 text-center">
                 <button class="btn btn-primary btn-block btn-lg" onclick="fnChangeActionSubmit('{{ url('admin_product_low_stock_alert') }}'); return false;">
-                    検索する <svg class="cb cb-angle-right"><use xlink:href="#cb-angle-right"></use></svg>
+                    登録 <svg class="cb cb-angle-right"><use xlink:href="#cb-angle-right"></use></svg>
                 </button>
             </div>
             <!-- /.col -->

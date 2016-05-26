@@ -10,6 +10,7 @@ use Doctrine\DBAL\Schema\Schema;
  */
 class Version20160427151700 extends AbstractMigration
 {
+    const TABLE = 'plg_low_stock_alert';
     public function up(Schema $schema)
     {
         $this->createPluginTable($schema);
@@ -17,12 +18,12 @@ class Version20160427151700 extends AbstractMigration
 
     public function down(Schema $schema)
     {
-        $schema->dropTable('plg_low_stock_alert');
+        $schema->dropTable(self::TABLE);
     }
 
     protected function createPluginTable(Schema $schema)
     {
-        $table = $schema->createTable("plg_low_stock_alert");
+        $table = $schema->createTable(self::TABLE);
         $table->addColumn('stock_alert', 'integer', array(
             'unsigned' => true,
             'default' => 0,

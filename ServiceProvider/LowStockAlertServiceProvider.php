@@ -45,7 +45,7 @@ class LowStockAlertServiceProvider implements ServiceProviderInterface
         // menu bar register
         $app['config'] = $app->share($app->extend('config', function ($config) {
             $addNavi['id'] = 'product_low_stock_alert';
-            $addNavi['name'] = 'Low Stock Alert';
+            $addNavi['name'] = '残り在庫数表示設定画面';
             $addNavi['url'] = 'admin_product_low_stock_alert';
             $nav = $config['nav'];
             foreach ($nav as $key => $val) {

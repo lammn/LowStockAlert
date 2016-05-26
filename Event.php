@@ -41,6 +41,7 @@ class Event
             }
 
             $low_stock_number = $LowStockAlert->getId();
+            $lowStocks = array();
             // check stock for each product class
             foreach ($Product->getProductClasses() as $key => $ProductClass) {
                 $classId = $ProductClass->getId();
