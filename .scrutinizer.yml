@@ -93,12 +93,12 @@ build:
         php: 5.6.16
         variables:
              PLUGIN_CODE: LowStockAlert
-             DB: mysql
+             DB: pgsql
              ECCUBE_VERSION: master
-             USER: "root"
+             USER: "postgres"
              DBNAME: "myapp_test"
-             DBPASS: "Password12!"
-             DBUSER: "root"
+             DBPASS: "password"
+             DBUSER: "postgres"
 
     dependencies:
         before:
