@@ -97,7 +97,7 @@ build:
              ECCUBE_VERSION: master
              USER: "root"
              DBNAME: "myapp_test"
-             DBPASS: ""
+             DBPASS: " "
              DBUSER: "root"
 
     dependencies:
