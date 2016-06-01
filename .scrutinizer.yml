@@ -91,7 +91,7 @@ build:
         php: 5.6.16
         variables:
              PLUGIN_CODE: LowStockAlert
-             DB: pgsql
+             DB: mysql
              ECCUBE_VERSION: master
 
     dependencies:
