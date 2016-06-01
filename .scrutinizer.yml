@@ -57,7 +57,6 @@ tools:
     #    enabled: true
     #    config:
     #        standard: PSR2
-    external_code_coverage: true
 
     php_cpd:
         enabled: false
@@ -95,10 +94,10 @@ build:
         variables:
              PLUGIN_CODE: LowStockAlert
              DB: mysql
-             ECCUBE_VERSION: 3.0.9
+             ECCUBE_VERSION: master
              USER: "root"
              DBNAME: "myapp_test"
-             DBPASS: " "
+             DBPASS: "Password12!"
              DBUSER: "root"
 
     dependencies:
@@ -108,8 +107,8 @@ build:
             - git clone https://github.com/EC-CUBE/ec-cube.git
             - cd ec-cube
             # update composer
-            - php -r "readfile('http://getcomposer.org/installer');" | php
-            - php composer.phar install --dev --no-interaction -o
+            - composer selfupdate
+            - composer install --dev --no-interaction -o
             # install ec-cube
             - sh eccube_install.sh ${DB} none
             # install plugin
@@ -120,4 +119,8 @@ build:
         override:
             -
                 command: phpunit app/Plugin/${PLUGIN_CODE}/Tests
+#                command: phpunit --coverage-clover=coverage1
+#                    coverage:
+#                        file: 'coverage1'
+#                        format: 'clover'
                 on_node: 1
