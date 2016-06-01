@@ -91,7 +91,7 @@ checks:
 build:
     environment:
 #        php: 5.6.16
-        php: true
+        php: 7.0.6
         variables:
              PLUGIN_CODE: LowStockAlert
              DB: mysql
