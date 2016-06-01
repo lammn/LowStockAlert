@@ -106,7 +106,7 @@ build:
             - tar cvzf ${HOME}/${PLUGIN_CODE}.tar.gz ./*
             # clone ec-cube
             - git clone https://github.com/nanasess/ec-cube.git
-            - sh -c "if [ ! '${ECCUBE_VERSION}' = 'master' ]; then  git checkout -b ${ECCUBE_VERSION} refs/tags/${ECCUBE_VERSION}; fi"
+            - sh -c "if [ ! '${ECCUBE_VERSION}' = 'master' ]; then  git checkout -b ${ECCUBE_VERSION}; fi"
             - cd ec-cube
             # update composer
             - php -r "readfile('http://getcomposer.org/installer');" | php
