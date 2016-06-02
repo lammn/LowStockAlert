@@ -50,6 +50,8 @@ before_script:
 
 script:
   - phpunit --coverage-text --coverage-clover=coverage.clover app/Plugin/${PLUGIN_CODE}/Tests
+  - pwd
+  - ls
 
 after_script:
   # disable plugin
