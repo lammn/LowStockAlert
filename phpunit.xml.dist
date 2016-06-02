@@ -15,8 +15,8 @@
 
     <!-- 出力するログファイル    -->
     <logging>
-        <!--<log type="coverage-clover" target="./reports/coverage.clover"/>-->
-        <log type="coverage-html" target="./reports/coverage.html"/>
+        <log type="coverage-clover" target="coverage.clover"/>
+        <!--<log type="coverage-html" target="./reports/coverage.html"/>-->
     </logging>
 
     <!-- カバーレージのターゲット -->
