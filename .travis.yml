@@ -50,8 +50,7 @@ before_script:
 
 script:
   # exec phpunit on ec-cube
-  - phpunit app/Plugin/${PLUGIN_CODE}/Tests
-  - phpunit --coverage-text --coverage-clover=coverage.clover
+  - phpunit --coverage-text --coverage-clover=coverage.clover app/Plugin/${PLUGIN_CODE}/Tests
 
 after_script:
   # disable plugin
