@@ -50,13 +50,14 @@ before_script:
 
 script:
   - phpunit --coverage-text --coverage-clover=coverage.clover app/Plugin/${PLUGIN_CODE}/Tests
+  - cp coverage.clover ../
   - pwd
   - ls
 
 after_script:
   # disable plugin
-  - php app/console plugin:develop disable --code=${PLUGIN_CODE}
-  # uninstall plugin
-  - php app/console plugin:develop uninstall --code=${PLUGIN_CODE} --uninstall-force=true
+#  - php app/console plugin:develop disable --code=${PLUGIN_CODE}
+#  # uninstall plugin
+#  - php app/console plugin:develop uninstall --code=${PLUGIN_CODE} --uninstall-force=true
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
