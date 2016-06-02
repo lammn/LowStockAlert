@@ -49,9 +49,9 @@ tools:
             browser: true
             globals: { _: false, Backbone: false, jQuery: false, eccube: false }
 
-#    external_code_coverage:
-#        runs: 1
-#        timeout: 36000 #The timeout must be in the interval [60,36000].
+    external_code_coverage:
+        runs: 1
+        timeout: 36000 #The timeout must be in the interval [60,36000].
 
     #php_code_sniffer:
     #    enabled: true
@@ -87,42 +87,55 @@ checks:
             ruleset_path: 'Symfony2/ruleset.xml'
         code_rating: true
         duplication: true
+        remove_extra_empty_lines: true
+        remove_php_closing_tag: true
+        remove_trailing_whitespace: true
+        fix_use_statements:
+        remove_unused: true
+        preserve_multiple: false
+        preserve_blanklines: true
+        order_alphabetically: true
+        fix_php_opening_tag: true
+        fix_linefeed: true
+        fix_line_ending: true
+        fix_identation_4spaces: true
+        fix_doc_comments: true
 
-build:
-    environment:
-#        php: 5.6.16
-        php: 7.0.6
-        variables:
-             PLUGIN_CODE: LowStockAlert
-             DB: mysql
-             ECCUBE_VERSION: improve/php7
-             USER: "root"
-             DBNAME: "myapp_test"
-             DBPASS: " "
-             DBUSER: "root"
+#build:
+#    environment:
+##        php: 5.6.16
+#        php: 7.0.6
+#        variables:
+#             PLUGIN_CODE: LowStockAlert
+#             DB: mysql
+#             ECCUBE_VERSION: improve/php7
+#             USER: "root"
+#             DBNAME: "myapp_test"
+#             DBPASS: " "
+#             DBUSER: "root"
 
-    dependencies:
-        before:
-            - tar cvzf ${HOME}/${PLUGIN_CODE}.tar.gz ./*
-            # clone ec-cube
-            - git clone https://github.com/nanasess/ec-cube.git
-            - sh -c "if [ ! '${ECCUBE_VERSION}' = 'master' ]; then  git checkout -b ${ECCUBE_VERSION}; fi"
-            - cd ec-cube
-            # update composer
-            - php -r "readfile('http://getcomposer.org/installer');" | php
-            - php composer.phar install --dev --no-interaction -o
-            # install ec-cube
-            - sh eccube_install.sh ${DB} none
-            # install plugin
-            - php app/console plugin:develop install --path=${HOME}/${PLUGIN_CODE}.tar.gz
-            # enable plugin
-            - php app/console plugin:develop enable --code=${PLUGIN_CODE}
-    tests:
-        override:
-            -
-                command: phpunit app/Plugin/${PLUGIN_CODE}/Tests
-#                command: phpunit --coverage-clover=coverage
-#                coverage:
-#                    file: 'coverage'
-#                    format: 'clover'
-                on_node: 1
+#    dependencies:
+#        before:
+#            - tar cvzf ${HOME}/${PLUGIN_CODE}.tar.gz ./*
+#            # clone ec-cube
+#            - git clone https://github.com/nanasess/ec-cube.git
+#            - sh -c "if [ ! '${ECCUBE_VERSION}' = 'master' ]; then  git checkout -b ${ECCUBE_VERSION}; fi"
+#            - cd ec-cube
+#            # update composer
+#            - php -r "readfile('http://getcomposer.org/installer');" | php
+#            - php composer.phar install --dev --no-interaction -o
+#            # install ec-cube
+#            - sh eccube_install.sh ${DB} none
+#            # install plugin
+#            - php app/console plugin:develop install --path=${HOME}/${PLUGIN_CODE}.tar.gz
+#            # enable plugin
+#            - php app/console plugin:develop enable --code=${PLUGIN_CODE}
+#    tests:
+#        override:
+#            -
+#                command: phpunit app/Plugin/${PLUGIN_CODE}/Tests
+##                command: phpunit --coverage-clover=coverage
+##                coverage:
+##                    file: 'coverage'
+##                    format: 'clover'
+#                on_node: 1

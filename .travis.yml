@@ -7,9 +7,9 @@ cache:
     - $HOME/.composer/cache
 
 php:
-  - 5.3
-  - 5.4
-  - 5.5
+#  - 5.3
+#  - 5.4
+#  - 5.5
   - 5.6
 #  - 7.0
 
@@ -51,9 +51,12 @@ before_script:
 script:
   # exec phpunit on ec-cube
   - phpunit app/Plugin/${PLUGIN_CODE}/Tests
+  - phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_script:
   # disable plugin
   - php app/console plugin:develop disable --code=${PLUGIN_CODE}
   # uninstall plugin
   - php app/console plugin:develop uninstall --code=${PLUGIN_CODE} --uninstall-force=true
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
