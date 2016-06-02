@@ -49,7 +49,6 @@ before_script:
   - php app/console plugin:develop enable --code=${PLUGIN_CODE}
 
 script:
-  # exec phpunit on ec-cube
   - phpunit --coverage-text --coverage-clover=coverage.clover app/Plugin/${PLUGIN_CODE}/Tests
 
 after_script:
