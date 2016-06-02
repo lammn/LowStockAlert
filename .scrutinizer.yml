@@ -120,7 +120,7 @@ build:
     tests:
         override:
             -
-                command: phpunit --configuration app/Plugin/${PLUGIN_CODE}/Tests
+                command: phpunit app/Plugin/${PLUGIN_CODE}/Tests
                 command: phpunit --coverage-clover=coverage
                 coverage:
                     file: 'coverage'
