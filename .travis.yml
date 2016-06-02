@@ -51,6 +51,7 @@ before_script:
 script:
   - phpunit --coverage-text --coverage-clover=coverage.clover app/Plugin/${PLUGIN_CODE}/Tests
   - cp coverage.clover ../
+  - cd ../
   - pwd
   - ls
 
