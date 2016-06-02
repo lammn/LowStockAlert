@@ -122,7 +122,7 @@ build:
             -
                 command: phpunit app/Plugin/${PLUGIN_CODE}/Tests
                 command: phpunit --coverage-clover=coverage1
-                    coverage:
-                        file: 'coverage1'
-                        format: 'clover'
+                coverage:
+                    file: 'coverage1'
+                    format: 'clover'
                 on_node: 1
